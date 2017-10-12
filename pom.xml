@@ -11,6 +11,7 @@
     <properties>
         <cucumber.version>1.2.4</cucumber.version>
         <picocontainer.version>2.15</picocontainer.version>
+        <jetty.version>9.4.7.v20170914</jetty.version>
     </properties>
 
     <dependencies>
@@ -44,7 +45,10 @@
             <version>${picocontainer.version}</version>
             <scope>test</scope>
         </dependency>
-    
-
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
     </dependencies>
 </project>
