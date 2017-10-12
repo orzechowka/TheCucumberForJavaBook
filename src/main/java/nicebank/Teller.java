@@ -1,18 +1,9 @@
 package nicebank;
 
 /**
- * Created by Anna on 2017-10-08.
+ * Created by Anna on 2017-10-12.
  */
-public class Teller {
+public interface Teller {
 
-    private CashSlot cashSlot;
-
-    public Teller(CashSlot cashSlot) {
-        this.cashSlot = cashSlot;
-    }
-
-    public void withdrawFrom(Account account, int dollars) {
-        account.debit(dollars);
-        cashSlot.dispense(dollars);
-    }
+    void withdrawFrom(Account account, int dollars);
 }

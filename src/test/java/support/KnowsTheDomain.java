@@ -1,8 +1,11 @@
 package support;
 
 import nicebank.Account;
-import nicebank.Teller;
+import nicebank.AutomatedTeller;
 import nicebank.CashSlot;
+import nicebank.Teller;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 /**
  * Created by Anna on 2017-10-08.
@@ -11,7 +14,8 @@ public class KnowsTheDomain {
 
     private Account myAccount;
     private CashSlot cashSlot;
-    private Teller teller;
+    private AtmUserInterface teller;
+    private EventFiringWebDriver webDriver;
 
 
     public Account getMyAccount() {
@@ -28,10 +32,17 @@ public class KnowsTheDomain {
         return cashSlot;
     }
 
-    public Teller getTeller() {
+    public AtmUserInterface getTeller() {
         if (teller == null) {
-            teller = new Teller(getCashSlot());
+            teller = new AtmUserInterface(getWebDriver());
         }
         return teller;
+    }
+
+    public EventFiringWebDriver getWebDriver() {
+        if (webDriver == null) {
+            webDriver = new EventFiringWebDriver(new FirefoxDriver());
+        }
+        return webDriver;
     }
 }

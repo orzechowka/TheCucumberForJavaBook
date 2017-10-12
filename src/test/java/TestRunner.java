@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 
     @RunWith(Cucumber.class)
     @CucumberOptions(
-            plugin = {"progress", "html:target/cucumber-html-report"},
+            plugin = {"progress", "html:out"},
             snippets = SnippetType.CAMELCASE,
             features="src/test/resources"
     )
