@@ -17,7 +17,7 @@ public class ServerHooks {
     public ServerHooks(KnowsTheDomain helper) {
         this.helper = helper;
     }
-    
+
     @Before
     public void startServer() throws Exception {
         server = new AtmServer(PORT, helper.getCashSlot(), helper.getMyAccount());
