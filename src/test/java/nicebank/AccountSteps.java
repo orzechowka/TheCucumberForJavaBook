@@ -25,6 +25,7 @@ public class AccountSteps {
 
     @Then("^the balance of my account should be (\\$\\d+\\.\\d+)$")
     public void theBalanceOfMyAccountShouldBe$(@Transform(MoneyConverter.class) Money amount) throws Throwable {
+
         Assert.assertEquals("Incorrect account balance -", amount, helper.getMyAccount().getBalance());
     }
 
