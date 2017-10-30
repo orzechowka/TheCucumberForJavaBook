@@ -3,6 +3,9 @@ package nicebank;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.javalite.activejdbc.Base;
+
+import java.util.TimeZone;
 
 /**
  * Created by Anna on 2017-10-12.
@@ -31,6 +34,10 @@ public class AtmServer {
     }
 
     public static void main(String[] args) throws Exception {
+//        TimeZone timeZone = TimeZone.getTimeZone("Europe/");
+//        TimeZone.setDefault(timeZone);
+//        Class.forName("oracle.jdbc.OracleDriver");
+        Base.open( "com.mysql.jdbc.Driver", "jdbc:mysql://localhost/bank", "teller", "password");
         new AtmServer(9988, new CashSlot(), new Account()).start();
     }
 }
