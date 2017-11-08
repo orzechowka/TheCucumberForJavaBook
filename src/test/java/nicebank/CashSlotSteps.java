@@ -2,7 +2,6 @@ package nicebank;
 
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
-import support.KnowsTheCashSlot;
 
 
 /**
@@ -10,12 +9,13 @@ import support.KnowsTheCashSlot;
  */
 public class CashSlotSteps {
 
-    KnowsTheCashSlot cashSlotHelper;
+    CashSlot cashSlot;
 
-    public CashSlotSteps(KnowsTheCashSlot cashSlotHelper) {
-        this.cashSlotHelper = cashSlotHelper;
+    public CashSlotSteps(CashSlot cashSlot) {
+        this.cashSlot = cashSlot;
     }
+
     @Then("^\\$(\\d+) should be dispensed$") public void $ShouldBeDispensed(int dollars) throws Throwable {
-        Assert.assertEquals("Incorrect amount dispensed = ", dollars, cashSlotHelper.getCashSlot().getContents());
+        Assert.assertEquals("Incorrect amount dispensed = ", dollars, cashSlot.getContents());
     }
 }

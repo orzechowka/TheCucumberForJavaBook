@@ -4,7 +4,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import nicebank.AtmServer;
 import support.KnowsTheAccount;
-import support.KnowsTheCashSlot;
+import nicebank.CashSlot;
 
 /**
  * Created by Anna on 2017-10-12.
@@ -14,16 +14,16 @@ public class ServerHooks {
     public static final int PORT = 8887;
     private AtmServer server;
     private KnowsTheAccount accountHelper;
-    private KnowsTheCashSlot cashSlotHelper;
+    private CashSlot cashSlot;
 
-    public ServerHooks(KnowsTheAccount accountHelper, KnowsTheCashSlot cashSlotHelper) {
+    public ServerHooks(KnowsTheAccount accountHelper, CashSlot cashSlot) {
         this.accountHelper = accountHelper;
-        this.cashSlotHelper = cashSlotHelper;
+        this.cashSlot = cashSlot;
     }
 
     @Before
     public void startServer() throws Exception {
-        server = new AtmServer(PORT, cashSlotHelper.getCashSlot(), accountHelper.getMyAccount());
+        server = new AtmServer(PORT, cashSlot, accountHelper.getMyAccount());
         server.start();
     }
 
