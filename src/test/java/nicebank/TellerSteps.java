@@ -1,21 +1,23 @@
 package nicebank;
 
 import cucumber.api.java.en.When;
-import support.KnowsTheDomain;
-
+import support.KnowsTheAccount;
+import support.KnowsTheTeller;
 /**
  * Created by Anna on 2017-10-08.
  */
 public class TellerSteps {
 
-    KnowsTheDomain helper;
+    KnowsTheAccount accountHelper;
+    KnowsTheTeller tellerHelper;
 
-    public TellerSteps(KnowsTheDomain helper) {
-        this.helper = helper;
+    public TellerSteps(KnowsTheTeller tellerHelper, KnowsTheAccount accountHelper) {
+        this.tellerHelper = tellerHelper;
+        this.accountHelper = accountHelper;
     }
 
     @When("^I withdraw \\$(\\d+)$")
     public void iWithdraw$(int amount) throws Throwable {
-        helper.getTeller().withdrawFrom(helper.getMyAccount(), amount);
+        tellerHelper.getTeller().withdrawFrom(accountHelper.getMyAccount(), amount);
     }
 }

@@ -4,27 +4,30 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
-import support.KnowsTheDomain;
+import support.MyWebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
 
 /**
  * Created by Anna on 2017-10-12.
  */
 public class WebDriverHooks {
 
-    private KnowsTheDomain helper;
+    private final EventFiringWebDriver webDriver;
 
-    public WebDriverHooks(KnowsTheDomain helper) {
-        this.helper = helper;
+    public WebDriverHooks(MyWebDriver webDriver) {
+        this.webDriver = webDriver;
     }
+
     @After
     public void finish(Scenario scenario) {
         try {
-            byte[] screenshot = helper.getWebDriver().getScreenshotAs(OutputType.BYTES);
+            byte[] screenshot = webDriver.getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         } finally {
-            helper.getWebDriver().close();
+            webDriver.close();
         }
     }
 }

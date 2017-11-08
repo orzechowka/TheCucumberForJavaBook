@@ -3,7 +3,8 @@ package hooks;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import nicebank.AtmServer;
-import support.KnowsTheDomain;
+import support.KnowsTheAccount;
+import support.KnowsTheCashSlot;
 
 /**
  * Created by Anna on 2017-10-12.
@@ -12,15 +13,17 @@ public class ServerHooks {
 
     public static final int PORT = 8887;
     private AtmServer server;
-    private KnowsTheDomain helper;
+    private KnowsTheAccount accountHelper;
+    private KnowsTheCashSlot cashSlotHelper;
 
-    public ServerHooks(KnowsTheDomain helper) {
-        this.helper = helper;
+    public ServerHooks(KnowsTheAccount accountHelper, KnowsTheCashSlot cashSlotHelper) {
+        this.accountHelper = accountHelper;
+        this.cashSlotHelper = cashSlotHelper;
     }
 
     @Before
     public void startServer() throws Exception {
-        server = new AtmServer(PORT, helper.getCashSlot(), helper.getMyAccount());
+        server = new AtmServer(PORT, cashSlotHelper.getCashSlot(), accountHelper.getMyAccount());
         server.start();
     }
 

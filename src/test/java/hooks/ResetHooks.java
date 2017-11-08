@@ -11,9 +11,6 @@ public class ResetHooks {
 
     @Before
     public void reset() {
-
-        //Base.rollbackTransaction();
         TransactionQueue.clear();
-        //BalanceStore.clear();
     }
 }
